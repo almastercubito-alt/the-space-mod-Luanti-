@@ -1,14 +1,38 @@
-# the-space-mod-Luanti-
-This is the repository of the new and in development The space mod for luanti, here you can find the most recent version
+# The Space Mod (Luanti)
 
- # Instalation
-Download the code of the latest version in a .zip file and decompresd it , put the decompresed folder in the mods folder of Luanti
+This is the repository for the new and currently in-development **The Space Mod** for Luanti. Here you can find the latest version of the mod.
 
- #INFO
- -What is this mod? The space mod is a mod for minetest game in luanti, in the future it will feature, Oxigen and live suport systems, machines, moon dimension, rocket          system, space station and asteroid mining.
- 
- -What is the release date? by now the mod is in an early stage so there isn't one.
- 
- -Will it be compatible with other mods? there is no actual plan for doing this with other mods that are not I3 and 3d armor.
+## Installation
 
- sorry for my bad english.
+1. Download the latest version of the mod as a ZIP file.
+2. Extract the ZIP archive.
+3. Place the extracted folder into your Luanti `mods` directory.
+4. Enable the mod in your world settings.
+
+## Information
+
+### What is this mod?
+
+The Space Mod is a mod for Minetest Game on Luanti. In the future, it is planned to include:
+
+* Oxygen and life-support systems
+* Machines and advanced technology
+* A Moon dimension
+* A rocket system
+* Space stations
+* Asteroid mining
+
+### Release Date
+
+The mod is currently in an early stage of development, so there is no planned release date yet.
+
+### Compatibility
+
+At the moment, there are no plans for compatibility with other mods, except for:
+
+* Inventory Plus (I3)
+* 3D Armor
+
+## Notes
+
+This project is still under active development, and features may change over time.
