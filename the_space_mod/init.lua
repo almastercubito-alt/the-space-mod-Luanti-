@@ -61,12 +61,17 @@ core.register_alias("moon_gravel", "the_space_mod:lunar_gravel")
 core.register_alias("moon_stone", "the_space_mod:lunar_stone")
 core.register_alias("gas_tank", "the_space_mod:gas_tank")
 core.register_alias("electric_crafter", "the_space_mod:electric_crafter")
+core.register_alias("asteroid_stone", "the_space_mod:asteroid_stone")
+core.register_alias("asteroid_sulfur_ore", "the_space_mod:asteroid_sulfur_ore")
+core.register_alias("asteroid_titanium_ore", "the_space_mod:asteroid_titanium_ore")
+core.register_alias("titanium_ingot", "the_space_mod:titanium_ingot")
+core.register_alias("sulfur_ingot", "the_space_mod:sulfur_ingot")
 -- items
 core.register_craftitem("the_space_mod:gas_tank", {
     description = "Gas tank",
     inventory_image = "the_space_mod_gas_tank.png"
 })
-
+--ingots
 core.register_craftitem("the_space_mod:sulfur_ingot", {
     description = "Sulfur ingot",
     inventory_image = "the_space_mod_sulfur_ingot.png"
@@ -89,4 +94,20 @@ core.register_node("the_space_mod:electric_crafter", {
 
     paramtype2 = "4dir",
     on_place = core.rotate_node
+})
+
+--recipes
+
+core.register_craft({
+    type = "cooking",
+    output = "the_space_mod:sulfur_ingot",
+    recipe = "the_space_mod:asteroid_sulfur_ore",
+    cooktime = 10
+})
+
+core.register_craft({
+    type = "cooking",
+    output = "the_space_mod:titanium_ingot",
+    recipe = "the_space_mod:asteroid_titanium_ore",
+    cooktime = 10
 })
