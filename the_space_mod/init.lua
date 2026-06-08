@@ -1,0 +1,92 @@
+--blocks
+core.register_node("the_space_mod:asteroid_stone", {
+    description = "Asteroid stone",
+    tiles = {"asteroid_stone.png"},
+    groups = {
+        cracky = 2,
+        stone = 1
+    }
+})
+
+core.register_node("the_space_mod:asteroid_sulfur_ore", {
+    description = "Asteroid sulfur ore",
+    tiles = {"asteroid_sulfur.png"},
+    groups = {
+        cracky = 2,
+    }
+})
+
+core.register_node("the_space_mod:asteroid_titanium_ore", {
+    description = "Asteroid titanium ore",
+    tiles = {"asteroid_titanium.png"},
+    groups = {
+        cracky = 2,
+    }
+})
+
+core.register_node("the_space_mod:regolith", {
+    description = "Moon regolith",
+    tiles = {"regolith.png"},
+    groups = {crumbly = 1,
+                falling_node = 1
+             }
+
+})
+
+core.register_node("the_space_mod:lunar_gravel", {
+    description = "Moon gravel",
+    tiles = {"lunargravel.png"},
+    groups = {
+        crumbly = 1,
+        falling_node = 1
+    }
+
+})
+
+core.register_node("the_space_mod:lunar_stone", {
+    description = "Moon stone",
+    tiles = {"lunarstone.png"},
+    groups = {cracky = 1, stone = 1}
+})
+
+core.register_node("the_space_mod:station_center", {
+    description = "Station center",
+    tiles = {"station_center.png"},
+    groups = {cracky = 1}
+})
+--alias
+core.register_alias("regolith", "the_space_mod:regolith")
+core.register_alias("station_center", "the_space_mod:station_center")
+core.register_alias("moon_gravel", "the_space_mod:lunar_gravel")
+core.register_alias("moon_stone", "the_space_mod:lunar_stone")
+core.register_alias("gas_tank", "the_space_mod:gas_tank")
+core.register_alias("electric_crafter", "the_space_mod:electric_crafter")
+-- items
+core.register_craftitem("the_space_mod:gas_tank", {
+    description = "Gas tank",
+    inventory_image = "the_space_mod_gas_tank.png"
+})
+
+core.register_craftitem("the_space_mod:sulfur_ingot", {
+    description = "Sulfur ingot",
+    inventory_image = "the_space_mod_sulfur_ingot.png"
+})
+
+core.register_craftitem("the_space_mod:titanium_ingot", {
+    description = "Titanium ingot",
+    inventory_image = "the_space_mod_titanium_ingot.png"
+})
+--machines
+core.register_node("the_space_mod:electric_crafter", {
+    description = "Electric crafter",
+    tiles = {"electric_crafter_up.png", -- y+
+    "electric_crafter_sides.png", -- y-
+    "electric_crafter_sides.png", -- x+
+    "electric_crafter_sides.png", -- x-
+    "electric_crafter_sides.png", -- z+
+    "electric_crafter_front.png"},-- z-
+    groups = {cracky = 2},
+
+    paramtype2 = "4dir",
+    on_place = core.rotate_node
+})
