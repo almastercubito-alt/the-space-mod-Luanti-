@@ -46,7 +46,7 @@ core.register_node("the_space_mod:lunar_gravel", {
 core.register_node("the_space_mod:lunar_stone", {
     description = "Moon stone",
     tiles = {"lunarstone.png"},
-    groups = {cracky = 1, stone = 1}
+    groups = {cracky = 1, stone = 1},
 })
 
 core.register_node("the_space_mod:station_center", {
@@ -71,7 +71,7 @@ core.register_craftitem("the_space_mod:gas_tank", {
     description = "Gas tank",
     inventory_image = "the_space_mod_gas_tank.png"
 })
---ingots
+--for recipes items
 core.register_craftitem("the_space_mod:sulfur_ingot", {
     description = "Sulfur ingot",
     inventory_image = "the_space_mod_sulfur_ingot.png"
@@ -111,3 +111,27 @@ core.register_craft({
     recipe = "the_space_mod:asteroid_titanium_ore",
     cooktime = 10
 })
+-- atmosphere
+timer = 0
+
+core.register_globalstep(function(dtime)
+    timer = timer + dtime
+    if timer >= 5 then
+        timer = 0
+        local players = core.get_connected_players()
+        for _, player in ipairs(players) do
+            local pos = player:get_pos()
+            if pos.y >= 3000 then
+                player:set_sky({
+                    type = "plain",
+                    base_color = "#000000"
+                })
+            else
+                player:set_sky({
+                    type = "regular"
+                })
+
+            end
+        end
+    end
+end)
