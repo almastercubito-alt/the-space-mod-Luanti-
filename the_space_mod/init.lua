@@ -114,7 +114,51 @@ core.register_craft({
 -- atmosphere
 atmosphere = {}
 timer = 0
+--atmosphere propieties
 
+-- TODO:
+-- Investigate sky rendering in Luanti 5.16
+-- Sunrise remains visible
+-- Stars not rendering with plain sky
+
+local function atmosphere_effects(layer, player)
+    --troposphere
+    if layer == 0 then
+        --sky
+        player:set_sky({
+            type = "regular"
+        })
+    elseif layer == 1 then
+    --stratosphere
+        --sky
+        player:set_sky({
+            type = "plain",
+            base_color = "#114C7D"
+        })
+
+    elseif layer == 2 then
+    --thermosphere
+    --sky
+        player:set_sky({
+            type = "plain",
+            base_color = "#042247"
+        })
+    elseif layer == 3 then
+    --exosphere
+    --sky
+        player:set_sky({
+            type = "plain",
+            base_color = "#010514"
+        })
+    elseif layer == 4 then
+        --moon 
+        --sky
+        player:set_sky({
+            type = "plain",
+            base_color = "#000000",  
+        })
+    end
+end
 --memory cleaning
         core.register_on_leaveplayer(function(player, timed_out)
             atmosphere[player] = nil
@@ -133,22 +177,27 @@ core.register_globalstep(function(dtime)
             if pos.y < 1000 and atmosphere[player] ~= 0 then
                 --Troposphere
                 atmosphere[player] = 0
+                atmosphere_effects(atmosphere[player], player)
                 core.chat_send_all(atmosphere[player])
             elseif pos.y >= 1000 and pos.y < 5000 and atmosphere[player] ~= 1 then
                 --stratosphere
                 atmosphere[player] = 1
+                atmosphere_effects(atmosphere[player], player)
                 core.chat_send_all(atmosphere[player])
             elseif pos.y >= 5000 and pos.y < 10000 and atmosphere[player] ~= 2 then
                 --thermosphere
                 atmosphere[player] = 2
+                atmosphere_effects(atmosphere[player], player)
                 core.chat_send_all(atmosphere[player])
             elseif pos.y >= 10000 and pos.y < 20000 and atmosphere[player] ~= 3 then
                 --exosphere
                 atmosphere[player] = 3
+                atmosphere_effects(atmosphere[player], player)
                 core.chat_send_all(atmosphere[player])
             elseif pos.y >= 20000 and atmosphere[player] ~= 4 then
                 --moon 
                 atmosphere[player] = 4
+                atmosphere_effects(atmosphere[player], player)
                 core.chat_send_all(atmosphere[player] .. " luna WIP")
             end
             
