@@ -131,8 +131,25 @@ core.register_globalstep(function(dtime)
             local pos = player:get_pos()
             --atmospheric layers
             if pos.y < 1000 and atmosphere[player] ~= 0 then
+                --Troposphere
                 atmosphere[player] = 0
                 core.chat_send_all(atmosphere[player])
+            elseif pos.y >= 1000 and pos.y < 5000 and atmosphere[player] ~= 1 then
+                --stratosphere
+                atmosphere[player] = 1
+                core.chat_send_all(atmosphere[player])
+            elseif pos.y >= 5000 and pos.y < 10000 and atmosphere[player] ~= 2 then
+                --thermosphere
+                atmosphere[player] = 2
+                core.chat_send_all(atmosphere[player])
+            elseif pos.y >= 10000 and pos.y < 20000 and atmosphere[player] ~= 3 then
+                --exosphere
+                atmosphere[player] = 3
+                core.chat_send_all(atmosphere[player])
+            elseif pos.y >= 20000 and atmosphere[player] ~= 4 then
+                --moon 
+                atmosphere[player] = 4
+                core.chat_send_all(atmosphere[player] .. " luna WIP")
             end
             
         end
