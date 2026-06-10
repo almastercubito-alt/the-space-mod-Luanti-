@@ -112,26 +112,30 @@ core.register_craft({
     cooktime = 10
 })
 -- atmosphere
+atmosphere = {}
 timer = 0
+
+--memory cleaning
+        core.register_on_leaveplayer(function(player, timed_out)
+            atmosphere[player] = nil
+        end)
 
 core.register_globalstep(function(dtime)
     timer = timer + dtime
-    if timer >= 5 then
+    local players = core.get_connected_players()
+    if timer >= 3 then
         timer = 0
-        local players = core.get_connected_players()
+        
+        --detect atmosphere
         for _, player in ipairs(players) do
             local pos = player:get_pos()
-            if pos.y >= 3000 then
-                player:set_sky({
-                    type = "plain",
-                    base_color = "#000000"
-                })
-            else
-                player:set_sky({
-                    type = "regular"
-                })
-
+            --atmospheric layers
+            if pos.y < 1000 and atmosphere[player] ~= 0 then
+                atmosphere[player] = 0
+                core.chat_send_all(atmosphere[player])
             end
+            
         end
     end
+
 end)
