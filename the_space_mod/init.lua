@@ -116,10 +116,7 @@ atmosphere = {}
 timer = 0
 --atmosphere propieties
 
--- TODO:
--- Investigate sky rendering in Luanti 5.16
--- Sunrise remains visible
--- Stars not rendering with plain sky
+
 
 local function atmosphere_effects(layer, player)
     --troposphere
