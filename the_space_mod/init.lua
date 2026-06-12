@@ -69,7 +69,33 @@ core.register_alias("sulfur_ingot", "the_space_mod:sulfur_ingot")
 -- items
 core.register_craftitem("the_space_mod:gas_tank", {
     description = "Gas tank",
-    inventory_image = "the_space_mod_gas_tank.png"
+    inventory_image = "the_space_mod_gas_tank.png",
+    stack_max = 1
+})
+--suit
+armor:register_armor("the_space_mod:presurized_helmet", {
+    description = "Presurized helmet",
+    inventory_image = "the_space_mod_presurized_helmet_icon.png",
+    texture = "presurized_helmet.png",
+    preview = "the_space_mod_presurized_helmet_priview.png",
+    groups = {
+        armor_head = 1,
+        armor_heal = 2,
+        armor_use = 200,
+        life_suport = 1
+    }
+})
+
+armor:register_armor("the_space_mod:oxigen_backpack", {
+    description = "oxigen backpack",
+    inventory_image = "the_space_mod_oxigen_backpack_icon.png",
+    texture = "the_space_mod_oxigen_backpack.png",
+    preview = "",
+    groups = {
+        armor_torso = 1,
+        armor_heal = 2,
+        life_suport= 1
+    }
 })
 --for recipes items
 core.register_craftitem("the_space_mod:sulfur_ingot", {
@@ -116,7 +142,10 @@ atmosphere = {}
 timer = 0
 --atmosphere propieties
 
-
+-- TODO:
+-- Investigate sky rendering in Luanti 5.16
+-- Sunrise remains visible
+-- Stars not rendering with plain sky
 
 local function atmosphere_effects(layer, player)
     --troposphere
@@ -161,6 +190,7 @@ end
             atmosphere[player] = nil
         end)
 
+--detect atmosphere layer
 core.register_globalstep(function(dtime)
     timer = timer + dtime
     local players = core.get_connected_players()
