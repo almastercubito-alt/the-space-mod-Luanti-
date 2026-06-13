@@ -88,7 +88,7 @@ armor:register_armor("the_space_mod:presurized_helmet", {
 })
 
 armor:register_armor("the_space_mod:oxigen_backpack", {
-    description = "oxigen backpack",
+    description = "Oxigen backpack",
     inventory_image = "the_space_mod_oxigen_backpack_icon.png",
     texture = "the_space_mod_oxigen_backpack.png",
     preview = "",
@@ -143,7 +143,18 @@ atmosphere = {}
 timer = 0
 -- life support
 local function has_life_support(player)
+    local name = player:get_player_name()
 
+    if not armor.textures[name] then
+        return false
+    end
+
+    local texture = armor.textures[name].armor or ""
+
+    local helmet = string.find(texture, "presurized_helmet")
+    local backpack = string.find(texture, "oxigen_backpack")
+
+    return helmet and backpack
 end
 --atmosphere propieties
 local function atmosphere_effects(layer, player)
@@ -197,40 +208,49 @@ core.register_globalstep(function(dtime)
     if timer >= 3 then
         timer = 0
         
+        
         --detect atmosphere
+        
         for _, player in ipairs(players) do
             
+            
+        
+
             local pos = player:get_pos()
             --atmospheric layers
             if pos.y < 1000 and atmosphere[player] ~= 0 then
                 --Troposphere
                 atmosphere[player] = 0
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all("entered lower earth atmosphere")
+                core.chat_send_player(player:get_player_name() ,"entered lower earth atmosphere")
         
             elseif pos.y >= 1000 and pos.y < 5000 and atmosphere[player] ~= 1 then
                 --stratosphere
                 atmosphere[player] = 1
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all("entered stratosphere")
+                core.chat_send_player(player:get_player_name() ,"entered stratosphere")
             elseif pos.y >= 5000 and pos.y < 10000 and atmosphere[player] ~= 2 then
                 --thermosphere
                 atmosphere[player] = 2
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all("entered thermosphere")
+                core.chat_send_player(player:get_player_name() ,"entered thermosphere")
             elseif pos.y >= 10000 and pos.y < 20000 and atmosphere[player] ~= 3 then
                 --exosphere
                 atmosphere[player] = 3
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all("entered upper earth atmosphere")
+                core.chat_send_player(player:get_player_name(), "entered upper earth atmosphere")
             elseif pos.y >= 20000 and atmosphere[player] ~= 4 then
                 --moon 
                 atmosphere[player] = 4
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player] .. " moon WIP")
+                core.chat_send_player(player:get_player_name() ,atmosphere[player] .. " moon WIP")
             end
             
-            
+            if atmosphere[player] >= 1 then
+                if not has_life_support(player) then
+                player:set_hp(player:get_hp() - 1)
+                end
+            end
         end
     end
 
