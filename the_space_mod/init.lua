@@ -72,6 +72,7 @@ core.register_craftitem("the_space_mod:gas_tank", {
     inventory_image = "the_space_mod_gas_tank.png",
     stack_max = 1
 })
+
 --suit
 armor:register_armor("the_space_mod:presurized_helmet", {
     description = "Presurized helmet",
@@ -82,7 +83,7 @@ armor:register_armor("the_space_mod:presurized_helmet", {
         armor_head = 1,
         armor_heal = 2,
         armor_use = 200,
-        life_suport = 1
+        life_support = 1
     }
 })
 
@@ -94,7 +95,7 @@ armor:register_armor("the_space_mod:oxigen_backpack", {
     groups = {
         armor_torso = 1,
         armor_heal = 2,
-        life_suport= 1
+        life_support= 1
     }
 })
 --for recipes items
@@ -140,13 +141,11 @@ core.register_craft({
 -- atmosphere
 atmosphere = {}
 timer = 0
+-- life support
+local function has_life_support(player)
+
+end
 --atmosphere propieties
-
--- TODO:
--- Investigate sky rendering in Luanti 5.16
--- Sunrise remains visible
--- Stars not rendering with plain sky
-
 local function atmosphere_effects(layer, player)
     --troposphere
     if layer == 0 then
@@ -154,6 +153,7 @@ local function atmosphere_effects(layer, player)
         player:set_sky({
             type = "regular"
         })
+        
     elseif layer == 1 then
     --stratosphere
         --sky
@@ -161,7 +161,7 @@ local function atmosphere_effects(layer, player)
             type = "plain",
             base_color = "#114C7D"
         })
-
+       
     elseif layer == 2 then
     --thermosphere
     --sky
@@ -199,34 +199,37 @@ core.register_globalstep(function(dtime)
         
         --detect atmosphere
         for _, player in ipairs(players) do
+            
             local pos = player:get_pos()
             --atmospheric layers
             if pos.y < 1000 and atmosphere[player] ~= 0 then
                 --Troposphere
                 atmosphere[player] = 0
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player])
+                core.chat_send_all("entered lower earth atmosphere")
+        
             elseif pos.y >= 1000 and pos.y < 5000 and atmosphere[player] ~= 1 then
                 --stratosphere
                 atmosphere[player] = 1
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player])
+                core.chat_send_all("entered stratosphere")
             elseif pos.y >= 5000 and pos.y < 10000 and atmosphere[player] ~= 2 then
                 --thermosphere
                 atmosphere[player] = 2
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player])
+                core.chat_send_all("entered thermosphere")
             elseif pos.y >= 10000 and pos.y < 20000 and atmosphere[player] ~= 3 then
                 --exosphere
                 atmosphere[player] = 3
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player])
+                core.chat_send_all("entered upper earth atmosphere")
             elseif pos.y >= 20000 and atmosphere[player] ~= 4 then
                 --moon 
                 atmosphere[player] = 4
                 atmosphere_effects(atmosphere[player], player)
-                core.chat_send_all(atmosphere[player] .. " luna WIP")
+                core.chat_send_all(atmosphere[player] .. " moon WIP")
             end
+            
             
         end
     end
