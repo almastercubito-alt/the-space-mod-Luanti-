@@ -35,7 +35,8 @@ core.register_node("space_core:regolith", {
     description = "Moon regolith",
     tiles = {"regolith.png"},
     groups = {crumbly = 1,
-                falling_node = 1
+                falling_node = 1,
+                oddly_breakable_by_hand	= 1
              }
 
 })
