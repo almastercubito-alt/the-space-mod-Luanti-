@@ -4,7 +4,7 @@ This is the repository for the new and currently in-development **The Space Mod*
 
 ## Installation
 
-1. Download the latest version of the mod as a ZIP file.
+1. Download the latest version of the modpack as a ZIP file.
 2. Extract the ZIP archive.
 3. Place the extracted folder into your Luanti `mods` directory.
 4. Enable the mod in your world settings.
@@ -13,7 +13,7 @@ This is the repository for the new and currently in-development **The Space Mod*
 
 ### What is this mod?
 
-The Space Mod is a mod for Minetest Game on Luanti. In the future, it is planned to include:
+The Space Mod is a modpack for Minetest Game on Luanti. In the future, it is planned to include:
 
 * Oxygen and life-support systems
 * Machines and advanced technology
