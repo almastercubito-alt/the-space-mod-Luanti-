@@ -5,6 +5,8 @@ function space.get_layer(player)
     return space.atmosphere[player] or 0
 end
 
+
+
 --blocks
 core.register_node("space_core:asteroid_stone", {
     description = "Asteroid stone",
@@ -120,21 +122,34 @@ core.register_craft({
 -- atmosphere
 
 timer = 0
--- life support
-local function has_life_support(player)
-    local name = player:get_player_name()
-
-    if not armor.textures[name] then
-        return false
+--gravity
+local function set_gravity(layer, player)
+    if space.get_layer(player) == 1 then
+        player:set_physics_override({
+            gravity = 0.9
+        })
     end
 
-    local texture = armor.textures[name].armor or ""
+    if space.get_layer(player) == 2 then
+        player:set_physics_override({
+            gravity = 0.4
+        })
+    end
 
-    local helmet = string.find(texture, "presurized_helmet")
-    local backpack = string.find(texture, "oxigen_backpack")
+    if space.get_layer(player) == 3 then
+        player:set_physics_override({
+            gravity = 0.1
+        })
+    end
 
-    return helmet and backpack
+    if space.get_layer(player) == 4 then
+        player:set_physics_override({
+            gravity = 0.6
+        })
+    end
+    
 end
+
 --atmosphere propieties
 local function atmosphere_effects(layer, player)
     --troposphere
@@ -202,27 +217,32 @@ core.register_globalstep(function(dtime)
                 space.atmosphere[player] = 0
                 atmosphere_effects(space.atmosphere[player], player)
                 core.chat_send_player(player:get_player_name() ,"entered lower earth atmosphere")
+                set_gravity(space.atmosphere[player], player)
         
             elseif pos.y >= 1000 and pos.y < 5000 and space.atmosphere[player] ~= 1 then
                 --stratosphere
                 space.atmosphere[player] = 1
                 atmosphere_effects(space.atmosphere[player], player)
                 core.chat_send_player(player:get_player_name() ,"entered stratosphere")
+                set_gravity(space.atmosphere[player], player)
             elseif pos.y >= 5000 and pos.y < 10000 and space.atmosphere[player] ~= 2 then
                 --thermosphere
                 space.atmosphere[player] = 2
                 atmosphere_effects(space.atmosphere[player], player)
                 core.chat_send_player(player:get_player_name() ,"entered thermosphere")
+                set_gravity(space.atmosphere[player], player)
             elseif pos.y >= 10000 and pos.y < 20000 and space.atmosphere[player] ~= 3 then
                 --exosphere
                 space.atmosphere[player] = 3
                 atmosphere_effects(space.atmosphere[player], player)
                 core.chat_send_player(player:get_player_name(), "entered upper earth atmosphere")
+                set_gravity(space.atmosphere[player], player)
             elseif pos.y >= 20000 and space.atmosphere[player] ~= 4 then
                 --moon 
                 space.atmosphere[player] = 4
                 atmosphere_effects(space.atmosphere[player], player)
                 core.chat_send_player(player:get_player_name() ,space.atmosphere[player] .. " moon WIP")
+                set_gravity(space.atmosphere[player], player)
             end
             
             if space.atmosphere[player] >= 1 then
