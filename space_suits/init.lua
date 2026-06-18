@@ -1,3 +1,19 @@
+--comandos
+core.register_chatcommand("testhotbar", {
+    func = function(name)
+        local player = core.get_player_by_name(name)
+        local inv = player:get_inventory()
+
+        for slot = 1, 8 do
+            local stack = inv:get_stack("main", slot)
+
+            core.chat_send_player(
+                name,
+                slot .. " -> " .. stack:get_name()
+            )
+        end
+    end
+})
 --items
 core.register_craftitem("space_suits:gas_tank", {
     description = "Gas tank",
