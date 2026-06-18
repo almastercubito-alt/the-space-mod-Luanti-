@@ -4,6 +4,11 @@ core.register_craftitem("space_suits:gas_tank", {
     inventory_image = "the_space_mod_gas_tank.png",
     stack_max = 1
 })
+core.register_craftitem("space_suits:oxigen_tank", {
+    description = "Oxigen tank",
+    inventory_image = "the_space_mod_oxigen_tank.png",
+    stack_max = 1
+})
 -- alias
 core.register_alias("space_core:gas_tank", "space_suits:gas_tank")
 core.register_alias("gas_tank", "space_suits:gas_tank")
@@ -30,7 +35,7 @@ armor:register_armor("space_suits:presurized_helmet", {
 armor:register_armor("space_suits:oxigen_backpack", {
     description = "Oxigen backpack",
     inventory_image = "the_space_mod_oxigen_backpack_icon.png",
-    texture = "the_space_mod_oxigen_backpack.png",
+    texture = "the_space_mod_oxigen_backpack_2.png",
     preview = "",
     groups = {
         armor_torso = 1,
