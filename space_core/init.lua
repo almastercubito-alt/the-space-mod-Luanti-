@@ -138,7 +138,7 @@ local function set_gravity(layer, player)
 
     if space.get_layer(player) == 3 then
         player:set_physics_override({
-            gravity = 0.1
+            gravity = 0.2
         })
     end
 
