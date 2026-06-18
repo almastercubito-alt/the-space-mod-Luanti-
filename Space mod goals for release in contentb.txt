@@ -1,0 +1,5 @@
+details and features before contentDB release:
+-lower gravity in the upper you go
+-WIP Space suit
+-height survive mechanics
+-custom skyboxfor every atmosphere layer
