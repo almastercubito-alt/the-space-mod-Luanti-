@@ -1,11 +1,15 @@
 -- API
 space = {}
 space.atmosphere = {}
+
+--get initial atmosphere
+dofile(core.get_modpath("space_core") .. "/initial_atmosphere.lua")
+initial_atmosphere()
+--
+
 function space.get_layer(player)
     return space.atmosphere[player] or 0
 end
-
-
 
 --blocks
 core.register_node("space_core:launch_pad", {
@@ -75,7 +79,6 @@ core.register_alias("regolith", "space_core:regolith")
 core.register_alias("station_center", "space_core:station_center")
 core.register_alias("moon_gravel", "space_core:lunar_gravel")
 core.register_alias("moon_stone", "space_core:lunar_stone")
-core.register_alias("electric_crafter", "space_core:electric_crafter")
 core.register_alias("asteroid_stone", "space_core:asteroid_stone")
 core.register_alias("asteroid_sulfur_ore", "space_core:asteroid_sulfur_ore")
 core.register_alias("asteroid_titanium_ore", "space_core:asteroid_titanium_ore")

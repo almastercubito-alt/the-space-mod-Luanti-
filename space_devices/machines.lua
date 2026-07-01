@@ -19,3 +19,24 @@ core.register_node("space_devices:electric_crafter", {
     paramtype2 = "4dir",
     on_place = core.rotate_node
 })
+
+core.register_node("space_devices:oxigen_compressor",
+{
+    description = "Oxigen compressor",
+    tiles = {"oxigen_compressor.png"},
+    groups = {craky = 2},
+
+    --gas fill function
+    on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+        if space.get_layer(clicker) == 0 then
+            if itemstack:get_name() == "space_suits:gas_tank" then
+                itemstack:replace("space_suits:oxigen_tank 1")
+
+                return itemstack
+            end
+        end
+        core.chat_send_player(clicker:get_player_name(), "Only can refill oxigen tank in the earth surface")
+    end
+
+}
+)
