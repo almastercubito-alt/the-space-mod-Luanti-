@@ -86,26 +86,30 @@ function space.backpack_visuals(player)
     local tanks = space.get_oxigen_tanks(player)
     
 
-    --if last_tanks ~= tanks then
+    
         local tex = ""
-
+        --identify current texture
         if tanks == 0 then
-        tex = "the_space_mod_oxigen_backpack_0.png"
+        tex = "the_space_mod_oxigen_backpack_0"
         elseif tanks == 1 then
-            tex = "the_space_mod_oxigen_backpack_1.png"
+            tex = "the_space_mod_oxigen_backpack_1"
         else
-            tex = "the_space_mod_oxigen_backpack_2.png"
+            tex = "the_space_mod_oxigen_backpack_2"
         end
 
         local playername = player:get_player_name()
-        core.chat_send_all(dump(armor.textures[player:get_player_name()]))
-        armor.textures[playername].torso = tex
+        
+        --replace texture for new one
+        armor.textures[playername].armor = 
+            armor.textures[playername].armor:gsub(
+                "the_space_mod_oxigen_backpack_%d",
+                tex
+            )
+
 
         armor:update_player_visuals(player)
 
-        last_tanks = tanks
-    --end
-    
+        
 
 end
 

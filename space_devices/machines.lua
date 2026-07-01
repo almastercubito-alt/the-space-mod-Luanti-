@@ -24,7 +24,7 @@ core.register_node("space_devices:oxigen_compressor",
 {
     description = "Oxigen compressor",
     tiles = {"oxigen_compressor.png"},
-    groups = {craky = 2},
+    groups = {cracky = 2},
 
     --gas fill function
     on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
