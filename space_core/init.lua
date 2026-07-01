@@ -8,6 +8,12 @@ end
 
 
 --blocks
+core.register_node("space_core:launch_pad", {
+    description = "Launch Pad",
+    tiles = {"launch_pad.png"},
+    groups = {cracky = 1}
+})
+
 core.register_node("space_core:asteroid_stone", {
     description = "Asteroid stone",
     tiles = {"asteroid_stone.png"},
@@ -89,20 +95,8 @@ core.register_craftitem("space_core:titanium_ingot", {
     description = "Titanium ingot",
     inventory_image = "the_space_mod_titanium_ingot.png"
 })
---machines
-core.register_node("space_core:electric_crafter", {
-    description = "Electric crafter",
-    tiles = {"electric_crafter_up.png", -- y+
-    "electric_crafter_sides.png", -- y-
-    "electric_crafter_sides.png", -- x+
-    "electric_crafter_sides.png", -- x-
-    "electric_crafter_sides.png", -- z+
-    "electric_crafter_front.png"},-- z-
-    groups = {cracky = 2},
 
-    paramtype2 = "4dir",
-    on_place = core.rotate_node
-})
+
 
 --recipes
 
@@ -249,6 +243,11 @@ core.register_globalstep(function(dtime)
                 if not space.has_life_support(player) then
                 player:set_hp(player:get_hp() - 1)
                 end
+            end
+
+            if space.has_backpack(player) then
+                space.backpack_visuals(player)
+                
             end
         end
     end

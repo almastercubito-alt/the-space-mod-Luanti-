@@ -1,19 +1,4 @@
---comandos
-core.register_chatcommand("testhotbar", {
-    func = function(name)
-        local player = core.get_player_by_name(name)
-        local inv = player:get_inventory()
 
-        for slot = 1, 8 do
-            local stack = inv:get_stack("main", slot)
-
-            core.chat_send_player(
-                name,
-                slot .. " -> " .. stack:get_name()
-            )
-        end
-    end
-})
 --items
 core.register_craftitem("space_suits:gas_tank", {
     description = "Gas tank",
@@ -75,4 +60,67 @@ function space.has_life_support(player)
     local backpack = string.find(texture, "oxigen_backpack")
 
     return helmet and backpack
+end
+--life_support oxigen_tank detector
+
+function space.get_oxigen_tanks(player)
+    local tanks = 0
+    for i = 1, 8 do
+        local slot = i
+        local inv = player:get_inventory()
+        local stack = inv:get_stack("main", slot)
+
+        local name = stack:get_name()
+
+
+        if name == "space_suits:oxigen_tank" then
+            tanks = tanks + 1
+        end
+    end
+    return tanks
+end
+
+--backpack_visuals
+function space.backpack_visuals(player)
+
+    local tanks = space.get_oxigen_tanks(player)
+    
+
+    --if last_tanks ~= tanks then
+        local tex = ""
+
+        if tanks == 0 then
+        tex = "the_space_mod_oxigen_backpack_0.png"
+        elseif tanks == 1 then
+            tex = "the_space_mod_oxigen_backpack_1.png"
+        else
+            tex = "the_space_mod_oxigen_backpack_2.png"
+        end
+
+        local playername = player:get_player_name()
+        core.chat_send_all(dump(armor.textures[player:get_player_name()]))
+        armor.textures[playername].torso = tex
+
+        armor:update_player_visuals(player)
+
+        last_tanks = tanks
+    --end
+    
+
+end
+
+--detect backpack
+
+function space.has_backpack(player)
+    local name = player:get_player_name()
+
+    if not armor.textures[name] then
+        return false
+    end
+
+    local texture = armor.textures[name].armor or ""
+
+   local backpack = string.find(texture, "oxigen_backpack")
+
+    return backpack
 end
