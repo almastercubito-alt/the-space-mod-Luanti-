@@ -121,6 +121,13 @@ core.register_craft({
 timer = 0
 --gravity
 local function set_gravity(layer, player)
+    
+    if space.get_layer(player) == 0 then
+        player:set_physics_override({
+            gravity = 1
+        })
+    end
+
     if space.get_layer(player) == 1 then
         player:set_physics_override({
             gravity = 0.9
