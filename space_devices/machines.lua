@@ -35,7 +35,10 @@ core.register_node("space_devices:oxigen_compressor",
                 return itemstack
             end
         end
-        core.chat_send_player(clicker:get_player_name(), "Only can refill gas tanks in the earth surface")
+        if space.get_layer(clicker) > 0 then
+            core.chat_send_player(clicker:get_player_name(), "Only can refill gas tanks in the earth surface")
+        end
+        
     end
 
 }
