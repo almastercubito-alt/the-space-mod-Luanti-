@@ -17,6 +17,7 @@ core.register_alias("space_core:presurized_helmet", "space_suits:presurized_helm
 core.register_alias("presurized_helmet", "space_suits:presurized_helmet")
 core.register_alias("space_core:oxigen_backpack", "space_suits:oxigen_backpack")
 core.register_alias("oxigen_backpack", "space_suits:oxigen_backpack")
+core.register_alias("oxigen_tank", "space_suits:oxigen_tank")
 --suit
 
 --orbital

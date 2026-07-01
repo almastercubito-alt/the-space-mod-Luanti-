@@ -1,6 +1,7 @@
 --alias
 core.register_alias("electric_crafter", "space_devices:electric_crafter")
 core.register_alias("space_core:electric_crafter", "space_devices:electric_crafter")
+core.register_alias("oxigen_compressor", "space_devices:oxigen_compressor")
 
 --blocks
 
